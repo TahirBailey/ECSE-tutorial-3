@@ -1,3 +1,7 @@
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
 readings = [
     {"name": "front-door", "room": "hall",    "temp": 27.4, "online": True},
     {"name": "hall-lamp",  "room": "hall",    "temp": 26.1, "online": True},
@@ -26,3 +30,8 @@ def average_temp(devices):
     return total / len(devices)
 
 print(average_temp(readings))
+
+
+@app.get("/devices")
+def get_devices():
+    return readings
